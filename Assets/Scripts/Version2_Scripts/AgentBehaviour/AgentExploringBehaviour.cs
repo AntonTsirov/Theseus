@@ -20,9 +20,12 @@ public class AgentExploringBehaviour : StateMachineBehaviour
         if ((Vector3.Distance(animator.gameObject.transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < 3f && FindObjectOfType<PlayerController>().isRunning) ||
             animator.gameObject.GetComponent<Unit>().canSeePlayer)
         {
-            animator.gameObject.GetComponent<Unit>().StopPathing();
-            GameObject.FindObjectOfType<GameManager>().numberOfEnemies++;
-            animator.SetBool("isHunting", true);
+            if (animator.gameObject.GetComponent<Agent>().isCorrupted)//TODO CREATE 2 MROE STATES BEING CORRUPTED AND CLEANSED or maybe only one
+            {
+                animator.gameObject.GetComponent<Unit>().StopPathing();
+                GameObject.FindObjectOfType<GameManager>().numberOfEnemies++;
+                animator.SetBool("isHunting", true);
+            }
         }
     }
 

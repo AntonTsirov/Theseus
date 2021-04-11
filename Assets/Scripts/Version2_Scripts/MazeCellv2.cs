@@ -52,7 +52,7 @@ public class MazeCellv2 : MonoBehaviour
 
     public void Initialize(MazeRoom room)
     {
-        room.Add(this);
+        if (FindObjectOfType<Maze>().doorProbability != 0) room.Add(this);
         //transform.GetChild(0).GetComponent<Renderer>().material = room.settings.floorMaterial; TODO: figure out the settings of materials
     }
 }

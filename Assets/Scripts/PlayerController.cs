@@ -84,4 +84,12 @@ public class PlayerController : MonoBehaviour
         Vector3 temp = new Vector3(randomPos.position.x, randomPos.position.y + 100, randomPos.position.z);
         gameObject.transform.position = temp;//TODO: MAYBE CHANGE POSITION of code or way that is execited
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("Spike") && hit.transform.parent.parent.parent.GetComponent<Animator>().GetBool("canHurt"))
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetTrigger("isDead");
+        }
+    }
 }

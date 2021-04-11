@@ -48,10 +48,13 @@ MonoBehaviour:
     z: 20
   cellPrefab: {fileID: 4185406162671671207, guid: 6d1e6c929cb3e2c4eb41190d26f5fde5,
     type: 3}
+  cellPrefabWithTrap: {fileID: 847403351724131822, guid: f3476cdee990f2a46b74e341c2f6381c,
+    type: 3}
+  trapProb: 0.1
   passagePrefab: {fileID: 9119727339136351469, guid: b0a774fb66a97814cb968fe1da454a0f,
     type: 3}
   wallPrefabs:
-  - {fileID: 8878799873677298791, guid: 6936394a118fff14889c74daa10042e3, type: 3}
+  - {fileID: 126761849912106539, guid: f00c95e96c3e8d04cbf4a90eda553d34, type: 3}
   - {fileID: 8878799873677298791, guid: 6936394a118fff14889c74daa10042e3, type: 3}
   - {fileID: 8878799873677298791, guid: 6936394a118fff14889c74daa10042e3, type: 3}
   - {fileID: 8878799873677298791, guid: 6936394a118fff14889c74daa10042e3, type: 3}
@@ -62,10 +65,14 @@ MonoBehaviour:
   - {fileID: 8106931346496849675, guid: 5a99dde0b87167348b2106c11fa6811e, type: 3}
   - {fileID: 5626349447001917770, guid: 76e8feca354994941b8bcd796a5d45a0, type: 3}
   - {fileID: 669198046239115772, guid: 4ba6afb92f2191a4b8c788d6c5b77bcd, type: 3}
+  - {fileID: 8878799873677298791, guid: 6936394a118fff14889c74daa10042e3, type: 3}
+  - {fileID: 8878799873677298791, guid: 6936394a118fff14889c74daa10042e3, type: 3}
+  - {fileID: 8878799873677298791, guid: 6936394a118fff14889c74daa10042e3, type: 3}
+  - {fileID: 5711374419540311297, guid: 8094eb93ffbd142459b0958c66dd9854, type: 3}
   generationStepDelay: 0
   doorPrefab: {fileID: 1603100766789901793, guid: 1f9fc21bdfd468b4fb82ba949a644e8d,
     type: 3}
-  doorProbability: 0.15
+  doorProbability: 0.644
   roomSettings:
   - floorMaterial: {fileID: 2100000, guid: e41742f96a2a0dc459f1ed611acfc9af, type: 2}
     wallMaterial: {fileID: 2100000, guid: e41742f96a2a0dc459f1ed611acfc9af, type: 2}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,14 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        StopAllCoroutines();
-        Destroy(mazeInstance.gameObject);
-        foreach (Unit agentObj in GameObject.FindObjectsOfType<Unit>())
-        {
-            Destroy(agentObj.gameObject);
-        }
-        GameObject.FindObjectOfType<GameManager>().poi.Clear();
-        BeginGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void mazeReady()

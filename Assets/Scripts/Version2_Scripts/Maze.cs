@@ -6,16 +6,18 @@ public class Maze : MonoBehaviour
 {
     public IntVector2 size;
     public MazeCellv2 cellPrefab;
+    public MazeCellv2 cellPrefabWithTrap;
+    public float trapProb;
     public MazeCellv2[,] cells;
     public MazePassage passagePrefab;
     public MazeWall[] wallPrefabs;
     public float generationStepDelay;
     public MazeDoor doorPrefab;
-    [Range(0f, 1f)]
+    [HideInInspector]
     public float doorProbability;
     public MazeRoomSettings[] roomSettings;
     private List<MazeRoom> rooms = new List<MazeRoom>();
-    private float renderOffSet = 0;
+    private int randomIndex;
 
     public MazeCellv2 GetCell(IntVector2 coordinates)
     {
@@ -44,11 +46,15 @@ public class Maze : MonoBehaviour
         MazeCellv2 newCell = CreateCell(RandomCoordinates);
         newCell.Initialize(CreateRoom(-1));
         activeCells.Add(newCell);
+        float[] doorProbOption = new float[3] { 0f, 0.05f, 0.1f };
+        doorProbability = doorProbOption[Random.Range(0, doorProbOption.Length)];
+        randomIndex = Random.Range(0, 5);
     }
 
     private void DoNextGenerationStep(List<MazeCellv2> activeCells)
     {
-        int currentIndex = activeCells.Count - 1;//if you pick first it very different behaviour of generation
+        int[] randomIndexArr = new int[5] { 0, Mathf.FloorToInt((activeCells.Count - 1) / 2), activeCells.Count - 1, activeCells.Count - 1, activeCells.Count - 1 };
+        int currentIndex = randomIndexArr[randomIndex]; ;//if you pick first it very different behaviour of generation
         MazeCellv2 currentCell = activeCells[currentIndex];
         if (currentCell.IsFullyInitialized)
         {
@@ -66,7 +72,7 @@ public class Maze : MonoBehaviour
                 CreatePassage(currentCell, neighbor, direction);
                 activeCells.Add(neighbor);
             }
-            else if (currentCell.room.settingsIndex == neighbor.room.settingsIndex)
+            else if (currentCell.room != null && (currentCell.room.settingsIndex == neighbor.room.settingsIndex))
             {
                 CreatePassageInSameRoom(currentCell, neighbor, direction);
             }
@@ -85,7 +91,7 @@ public class Maze : MonoBehaviour
 
     private MazeCellv2 CreateCell(IntVector2 coordinates)
     {
-        MazeCellv2 newCell = Instantiate(cellPrefab) as MazeCellv2;
+        MazeCellv2 newCell = Instantiate(Random.value <= trapProb ? cellPrefabWithTrap : cellPrefab) as MazeCellv2;
         cells[coordinates.x, coordinates.z] = newCell;
         newCell.coordinates = coordinates;
         newCell.name = "Maze Cell " + coordinates.x + ", " + coordinates.z;
@@ -117,7 +123,6 @@ public class Maze : MonoBehaviour
         MazeWall wall = Instantiate(wallPrefabs[Random.Range(0, wallPrefabs.Length)]) as MazeWall;
         wall.Initialize(cell, otherCell, direction);
         //wall.gameObject.transform.GetChild(0).transform.localScale = new Vector3(wall.gameObject.transform.GetChild(0).transform.localScale.x, wall.gameObject.transform.GetChild(0).transform.localScale.y, wall.gameObject.transform.GetChild(0).transform.localScale.z + renderOffSet);
-        renderOffSet += 0.00001f;
         if (direction == MazeDirection.North || direction == MazeDirection.South)
         {
             //wall.gameObject.transform.GetChild(0).transform.localScale = new Vector3(0.8f, wall.gameObject.transform.GetChild(0).transform.localScale.y, wall.gameObject.transform.GetChild(0).transform.localScale.z);

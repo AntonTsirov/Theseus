@@ -6,9 +6,8 @@ public class Unit : MonoBehaviour
 {
     public float speed;
     public float rotationSpeed;
-    Vector3[] path;
-    int targetIndex;
-    [HideInInspector]
+    public Vector3[] path;
+    public int targetIndex;
     public Transform target;
     public bool canSeePlayer = false;
     public float fieldOfViewDegrees = 90f;
@@ -57,8 +56,6 @@ public class Unit : MonoBehaviour
                 targetIndex++;
                 if (targetIndex >= path.Length)
                 {
-                    targetIndex = 0;
-                    path = new Vector3[0];
 
                     //targetDir = (target.position - this.transform.position).normalized;
                     targetDir = (new Vector3(target.position.x, this.transform.position.y, target.position.z) - this.transform.position).normalized;
@@ -117,7 +114,6 @@ public class Unit : MonoBehaviour
             RaycastHit hit;
             if (Physics.Linecast(transform.position, playerPos, out hit))
             {
-                Debug.Log(hit.transform.tag);
                 if (hit.transform.tag == "Player")
                 {
                     Debug.DrawLine(transform.position, hit.transform.position, Color.green, 0.3f);

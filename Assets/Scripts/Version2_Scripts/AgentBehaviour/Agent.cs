@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
+    public bool isCorrupted;
 
-    private Renderer rend;
+    public Renderer rend1;
+    public Renderer rend2;
     void Start()
     {
-        rend = GetComponent<Renderer>();
+        isCorrupted = false;//todo
     }
     void Update()
     {
-        float scaleX = Mathf.PingPong(Time.time, 5);
-        float scaleY = Mathf.PingPong(Time.time, 5);
-        rend.material.mainTextureScale = new Vector2(scaleX, scaleY);
+        if (isCorrupted)
+        {
+            float scaleX = Mathf.PingPong(Time.time / 3, 3);
+            float scaleY = Mathf.PingPong(Time.time / 3, 3);
+            rend1.material.mainTextureScale = new Vector2(scaleX, scaleY);
+            rend2.material.mainTextureScale = new Vector2(scaleX, scaleY);
+
+        }
 
     }
 }

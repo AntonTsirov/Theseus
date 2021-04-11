@@ -72,7 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5756048153322148617}
   - component: {fileID: 8437223776264253436}
-  - component: {fileID: 4012022155441370470}
   m_Layer: 0
   m_Name: Beta_Joints
   m_TagString: Untagged
@@ -198,18 +197,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.01842232, y: -0.23230344, z: 0.031073153}
     m_Extent: {x: 0.32041413, y: 0.7876887, z: 0.23735097}
   m_DirtyAABB: 0
---- !u!114 &4012022155441370470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 499667159202489941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 630fae345e18ae845b6d01d1daa21a3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &622447528200332436
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +239,7 @@ GameObject:
   - component: {fileID: 4596167741336415198}
   - component: {fileID: 5855486506120234660}
   - component: {fileID: 8841246645784466464}
+  - component: {fileID: 2471323127670422769}
   m_Layer: 0
   m_Name: Agent 1
   m_TagString: Untagged
@@ -307,12 +295,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa5cccb1ea16ca4680dda1916ec53f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 0.7
   rotationSpeed: 500
+  path: []
+  targetIndex: 0
   target: {fileID: 0}
   canSeePlayer: 0
-  fieldOfViewDegrees: 90
+  fieldOfViewDegrees: 120
   visibilityDistance: 100
+--- !u!114 &2471323127670422769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690044621536991693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630fae345e18ae845b6d01d1daa21a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCorrupted: 0
+  rend1: {fileID: 8437223776264253436}
+  rend2: {fileID: 7426762874823424374}
 --- !u!1 &696423151667031464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,7 +2062,6 @@ GameObject:
   m_Component:
   - component: {fileID: 664394322899592956}
   - component: {fileID: 7426762874823424374}
-  - component: {fileID: 6869733646831297402}
   m_Layer: 0
   m_Name: Beta_Surface
   m_TagString: Untagged
@@ -2183,18 +2187,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.01999402, y: -0.12230289, z: 0.030060023}
     m_Extent: {x: 0.3242811, y: 0.8988813, z: 0.2517361}
   m_DirtyAABB: 0
---- !u!114 &6869733646831297402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7962529243691373014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 630fae345e18ae845b6d01d1daa21a3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8194853691991852989
 GameObject:
   m_ObjectHideFlags: 0

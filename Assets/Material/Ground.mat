@@ -135,7 +135,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_6092CEBA: {r: 0.14094567, g: 0, b: 0.23584905, a: 0}
-    - _BaseColor: {r: 0.42452827, g: 0.42452827, b: 0.42452827, a: 1}
+    - _BaseColor: {r: 0.3962264, g: 0.2369206, b: 0.102794595, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
