@@ -15,7 +15,7 @@ public class DoorEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scaleY += Time.deltaTime / 2f;
+        scaleY += Time.deltaTime / 8f;
         rend.material.mainTextureOffset = new Vector2(0, scaleY);
     }
 }

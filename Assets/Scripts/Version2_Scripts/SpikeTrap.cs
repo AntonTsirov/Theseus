@@ -23,14 +23,4 @@ public class SpikeTrap : MonoBehaviour
             gameObject.transform.parent.gameObject.transform.parent.GetComponent<Animator>().SetTrigger("trigger");
         }
     }
-
-    public void CanKillPlayer()
-    {
-        killPlayer = true;
-    }
-
-    public void CantKillPlayer()
-    {
-        killPlayer = false;
-    }
 }

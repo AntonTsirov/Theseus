@@ -18,6 +18,7 @@ public class Maze : MonoBehaviour
     public MazeRoomSettings[] roomSettings;
     private List<MazeRoom> rooms = new List<MazeRoom>();
     private int randomIndex;
+    public GameObject exitWall;
 
     public MazeCellv2 GetCell(IntVector2 coordinates)
     {
@@ -35,6 +36,12 @@ public class Maze : MonoBehaviour
             //yield return delay;
             DoNextGenerationStep(activeCells);
         }
+
+        //create exit
+        IntVector2 exitCell = new IntVector2(Random.Range(0, size.x), Random.Range(0, size.z));
+        Destroy(GetCell(exitCell).gameObject.transform.Find("Quad").gameObject);
+        if (GetCell(exitCell).gameObject.transform.Find("Trap") != null) Destroy(GetCell(exitCell).gameObject.transform.Find("Trap").gameObject);
+        Instantiate(exitWall, GetCell(exitCell).gameObject.transform.position, Quaternion.identity, GetCell(exitCell).transform);
 
         //call generation of pathfinding grid 
         yield return new WaitForSeconds(1);

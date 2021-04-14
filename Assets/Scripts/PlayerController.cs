@@ -15,13 +15,12 @@ public class PlayerController : MonoBehaviour
     public float lookXLimit = 45.0f;
     [HideInInspector]
     public bool isRunning;
-
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
-
     [HideInInspector]
-    public bool canMove = true;
+    public bool canMove;
+    private bool dropFromSky = true;
 
     void Start()
     {
@@ -34,6 +33,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //lock player while falling from sky
+        if (!canMove && dropFromSky && characterController.isGrounded)
+        {
+            canMove = true;
+            dropFromSky = false;
+        }
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
@@ -47,6 +52,8 @@ public class PlayerController : MonoBehaviour
         else GetComponent<Animator>().SetBool("isWalking", true);
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+
+        if (characterController.isGrounded) moveDirection.y = 0;
 
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
@@ -69,13 +76,11 @@ public class PlayerController : MonoBehaviour
         characterController.Move(moveDirection * Time.deltaTime);
 
         // Player and Camera rotation
-        if (canMove)
-        {
-            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
-        }
+        rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+
     }
 
     public void placePlayer()
@@ -83,6 +88,7 @@ public class PlayerController : MonoBehaviour
         Transform randomPos = GameObject.FindObjectOfType<Maze>().cells[Random.Range(0, GameObject.FindObjectOfType<Maze>().size.x), Random.Range(0, GameObject.FindObjectOfType<Maze>().size.z)].gameObject.transform;
         Vector3 temp = new Vector3(randomPos.position.x, randomPos.position.y + 100, randomPos.position.z);
         gameObject.transform.position = temp;//TODO: MAYBE CHANGE POSITION of code or way that is execited
+        canMove = false;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -90,6 +96,7 @@ public class PlayerController : MonoBehaviour
         if (hit.collider.CompareTag("Spike") && hit.transform.parent.parent.parent.GetComponent<Animator>().GetBool("canHurt"))
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetTrigger("isDead");
+            canMove = false;
         }
     }
 }
