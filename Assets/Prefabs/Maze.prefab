@@ -44,13 +44,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size:
-    x: 20
-    z: 20
+    x: 25
+    z: 25
   cellPrefab: {fileID: 4185406162671671207, guid: 6d1e6c929cb3e2c4eb41190d26f5fde5,
     type: 3}
   cellPrefabWithTrap: {fileID: 847403351724131822, guid: f3476cdee990f2a46b74e341c2f6381c,
     type: 3}
   trapProb: 0.05
+  freeCells: []
   passagePrefab: {fileID: 9119727339136351469, guid: b0a774fb66a97814cb968fe1da454a0f,
     type: 3}
   wallPrefabs:
@@ -107,4 +108,5 @@ MonoBehaviour:
     wallMaterial: {fileID: 2100000, guid: e41742f96a2a0dc459f1ed611acfc9af, type: 2}
   - floorMaterial: {fileID: 2100000, guid: e41742f96a2a0dc459f1ed611acfc9af, type: 2}
     wallMaterial: {fileID: 2100000, guid: e41742f96a2a0dc459f1ed611acfc9af, type: 2}
-  exitWall: {fileID: 749461861689160442, guid: e3c8df4343fea5243888a75d092950a3, type: 3}
+  exitObject: {fileID: 749461861689160442, guid: e3c8df4343fea5243888a75d092950a3,
+    type: 3}
